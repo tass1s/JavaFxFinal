@@ -1,0 +1,113 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <!-- Βασική διαμόρφωση του project -->
+    <modelVersion>4.0.0</modelVersion> <!-- Η έκδοση του μοντέλου POM που χρησιμοποιείται -->
+    <groupId>gr.unipi</groupId> <!-- Το αναγνωριστικό της ομάδας που αναπτύσσει το project -->
+    <artifactId>CountriesUI</artifactId> <!-- Το αναγνωριστικό του project -->
+    <version>0.0.1-SNAPSHOT</version> <!-- Η έκδοση του project -->
+
+    <!-- Ρυθμίσεις που αφορούν την κατασκευή του project -->
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding> <!-- Κωδικοποίηση χαρακτήρων για την κατασκευή του project -->
+        <maven.compiler.source>11</maven.compiler.source> <!-- Έκδοση πηγαίου κώδικα Java που χρησιμοποιείται -->
+        <maven.compiler.target>11</maven.compiler.target> <!-- Έκδοση στόχου για τον bytecode της Java που παράγεται -->
+    </properties>
+
+    <!-- Ορισμός εξαρτήσεων του project -->
+    <dependencies>
+        <!-- JavaFX Controls -->
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-controls</artifactId>
+            <version>13</version> <!-- Η έκδοση του JavaFX που χρησιμοποιείται -->
+        </dependency>
+        
+        <!-- Jackson Core -->
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-core</artifactId>
+            <version>2.13.1</version> <!-- Βιβλιοθήκη Jackson για εργασίες JSON -->
+        </dependency>
+        
+        <!-- Jackson Databind -->
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>2.13.0</version> <!-- Βιβλιοθήκη Jackson για data binding -->
+        </dependency>
+        
+        <!-- JUnit Jupiter API για τεστ -->
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-api</artifactId>
+            <version>5.8.2</version> <!-- Βιβλιοθήκη JUnit για unit testing -->
+            <scope>test</scope> <!-- Χρήση μόνο για τη φάση τεστ -->
+        </dependency>
+
+        <!-- Jackson Annotations -->
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-annotations</artifactId>
+            <version>2.13.1</version> <!-- Βιβλιοθήκη Jackson για annotations -->
+        </dependency>
+
+        <!-- JUnit για τεστ -->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.11</version> <!-- Παλαιότερη έκδοση της JUnit -->
+            <scope>test</scope>
+        </dependency>
+        
+        <!-- Εξάρτηση για το module CountriesData του ίδιου project -->
+        <dependency>
+            <groupId>gr.unipi</groupId>
+            <artifactId>CountriesData</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+    </dependencies>
+
+    <!-- Προσαρμογές για την κατασκευή του project -->
+    <build>
+        <plugins>
+            <!-- Maven Jar Plugin για τη δημιουργία JAR αρχείων -->
+            <plugin>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>3.2.0</version>
+                <configuration>
+                    <archive>
+                        <manifestEntries>
+                            <Automatic-Module-Name>CountriesData</Automatic-Module-Name>
+                        </manifestEntries>
+                    </archive>
+                </configuration>
+            </plugin>
+            
+            <!-- Maven Compiler Plugin για την καθορισμό της έκδοσης Java -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.0</version>
+                <configuration>
+                    <release>11</release>
+                </configuration>
+            </plugin>
+            
+            <!-- JavaFX Maven Plugin για την εκτέλεση JavaFX εφαρμογών -->
+            <plugin>
+                <groupId>org.openjfx</groupId>
+                <artifactId>javafx-maven-plugin</artifactId>
+                <version>0.0.6</version>
+                <executions>
+                    <execution>
+                        <id>default-cli</id>
+                        <configuration>
+                            <mainClass>gr.unipi.CountriesUI.App</mainClass>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+</project>
